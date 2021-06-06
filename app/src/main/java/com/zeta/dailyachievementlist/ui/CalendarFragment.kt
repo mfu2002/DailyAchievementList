@@ -28,10 +28,6 @@ import javax.inject.Inject
 class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
 
     lateinit var binding: FragmentCalendarBinding
-    private val viewModel by viewModels<CalendarFragmentViewModel>()
-
-
-
     @Inject
     lateinit var achievementDao: AchievementDao
 
@@ -41,10 +37,11 @@ class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
     ): View {
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        val viewModel by viewModels<CalendarFragmentViewModel>()
+        binding.viewModel =viewModel
 
         val calendarAdapter = CalendarAdapter(viewModel.currentViewCalendarData, this)
-        viewModel.currentViewCalendarData.addOnListChangedCallback(
+        binding.viewModel.currentViewCalendarData.addOnListChangedCallback(
             RecyclerViewListChangeNotifier(
                 calendarAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
             )
@@ -76,12 +73,12 @@ class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
     }
 
     override fun calendarItemClicked(itemId: Long) {
-        viewModel.setAchievementList(itemId)
+        binding.viewModel.setAchievementList(itemId)
     }
 
     override fun selectedMonth(month: Int, year: Int) {
         lifecycleScope.launch {
-            viewModel.setMonthDataOnView(LocalDate.of(year, month, 1))
+            binding.viewModel.setMonthDataOnView(LocalDate.of(year, month, 1))
         }
     }
 }

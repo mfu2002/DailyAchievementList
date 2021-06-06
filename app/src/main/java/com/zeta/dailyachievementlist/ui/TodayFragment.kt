@@ -23,8 +23,6 @@ import javax.inject.Inject
 class TodayFragment : Fragment(), AchievementRecyclerViewParent {
 
     lateinit var binding: FragmentTodayBinding
-    private val viewModel by viewModels<TodayFragmentViewModel>()
-
 
     @Inject lateinit var achievementDao: AchievementDao
 
@@ -32,13 +30,15 @@ class TodayFragment : Fragment(), AchievementRecyclerViewParent {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+
+        val viewModel by viewModels<TodayFragmentViewModel>()
+
         binding = FragmentTodayBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val recyclerViewAdapter = AchievementRecyclerViewAdapter(viewModel.achievementsList, this)
-        viewModel.achievementsList.addOnListChangedCallback(
+        val recyclerViewAdapter = AchievementRecyclerViewAdapter(binding.viewModel.achievementsList, this)
+        binding.viewModel.achievementsList.addOnListChangedCallback(
             RecyclerViewListChangeNotifier(
                 recyclerViewAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
             )
@@ -49,8 +49,8 @@ class TodayFragment : Fragment(), AchievementRecyclerViewParent {
     }
 
     override fun deleteAchievement(achievementId: Long) {
-        val achievement = viewModel.achievementsList.find { it.id == achievementId }
-        viewModel.achievementsList.remove(achievement)
+        val achievement = binding.viewModel.achievementsList.find { it.id == achievementId }
+        binding.viewModel.achievementsList.remove(achievement)
         if(achievement != null) {
             lifecycleScope.launch {
                 achievementDao.deleteAchievement(achievement.id)

@@ -44,7 +44,7 @@ class CalendarFragmentViewModel @Inject constructor(val achievementDao: Achievem
                 LocalDateConverter.fromLocalDate(
                         date.withDayOfMonth(1))!!,
                 LocalDateConverter.fromLocalDate(
-                        date.withDayOfMonth(date.month.length(false)))!!
+                        date.withDayOfMonth(date.month.length(date.isLeapYear)))!!
         )
 
         val achievementDict = Hashtable<Long, ArrayList<Achievement>>()
@@ -86,7 +86,7 @@ class CalendarFragmentViewModel @Inject constructor(val achievementDao: Achievem
             currentViewCalendarData.add(CalendarItemData(-1, "", getDrawableBackground(Color.TRANSPARENT), false))
         }
 
-        for (day in 1..month.month.length(false)) {
+        for (day in 1..month.month.length(month.isLeapYear)) {
             val dayKey = firstDay.plusDays((day - 1).toLong())
             val dayAchievements = getAchievementForDate(dayKey)
 
