@@ -1,13 +1,18 @@
 package com.zeta.dailyachievementlist.viewmodel
 
+import android.app.Application
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zeta.dailyachievementlist.MyApplication
+import com.zeta.dailyachievementlist.R
 import com.zeta.dailyachievementlist.room.AchievementDao
 import com.zeta.dailyachievementlist.room.LocalDateConverter
 import com.zeta.dailyachievementlist.room.entity.Achievement
@@ -21,21 +26,27 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 @HiltViewModel
-class CalendarFragmentViewModel @Inject constructor(val achievementDao: AchievementDao): ViewModel() {
+class CalendarFragmentViewModel @Inject constructor(
+    app: Application,
+    val sharedPref: SharedPreferences,
+    val achievementDao: AchievementDao
+    ): AndroidViewModel(app) {
 
     val currentViewCalendarData = ObservableArrayList<CalendarItemData>()
     private val achievementCache = Hashtable<Long, List<Achievement>>()
-    private val dailyGoal = 5
     val currentViewAchievementList = ObservableArrayList<Achievement>()
 
     val viewingMonthStr = MutableLiveData("")
     private var viewingMonth =  LocalDate.now()
+
+    private val dailyGoal by lazy { sharedPref.getInt(getApplication<MyApplication>().getString(R.string.pref_goal), 5) }
 
 
     init {
         viewModelScope.launch {
             setMonthDataOnView(viewingMonth)
         }
+
     }
 
    private suspend fun getMonthAchievements(date: LocalDate) {

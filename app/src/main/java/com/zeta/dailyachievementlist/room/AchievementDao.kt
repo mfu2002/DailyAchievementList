@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.zeta.dailyachievementlist.room.entity.Achievement
+import java.time.LocalDate
 import java.util.*
 
 @Dao
@@ -21,10 +22,7 @@ interface AchievementDao {
     @Query("DELETE FROM Achievement WHERE id == :achievementId")
     suspend fun deleteAchievement(achievementId: Long)
 
-    @Query ("SELECT COUNT(*) FROM achievement WHERE :startDate <= accomplishedDate AND :endDate >= accomplishedDate")
-    suspend fun  getAchievementCount(startDate: Long, endDate: Long) : Long
-
-    @Query ("SELECT COUNT(*) FROM achievement WHERE :startDate <= accomplishedDate AND :endDate >= accomplishedDate GROUP BY accomplishedDate HAVING COUNT(*) >= :goal")
-    suspend fun fulfilledGoalCount(goal: Int, startDate: Long, endDate: Long) : Long
+    @Query("SELECT accomplishedDate FROM Achievement WHERE :startDate <= accomplishedDate and :endDate>= accomplishedDate")
+    suspend fun getDatesOfAchievementsBetween(startDate: Long, endDate: Long): List<StatisticsInfo>
 
 }

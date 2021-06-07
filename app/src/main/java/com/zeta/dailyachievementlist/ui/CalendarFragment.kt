@@ -1,5 +1,6 @@
 package com.zeta.dailyachievementlist.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zeta.dailyachievementlist.R
 import com.zeta.dailyachievementlist.RecyclerViewListChangeNotifier
 import com.zeta.dailyachievementlist.databinding.FragmentCalendarBinding
 import com.zeta.dailyachievementlist.room.AchievementDao
@@ -41,13 +43,11 @@ class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
         binding.viewModel =viewModel
 
         val calendarAdapter = CalendarAdapter(viewModel.currentViewCalendarData, this)
-        binding.viewModel.currentViewCalendarData.addOnListChangedCallback(
+        viewModel.currentViewCalendarData.addOnListChangedCallback(
             RecyclerViewListChangeNotifier(
                 calendarAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
             )
         )
-
-
 
 
         binding.rcvCalendar.adapter = calendarAdapter
@@ -63,6 +63,8 @@ class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
         binding.rcvAchievements.layoutManager = LinearLayoutManager(context)
 
 
+
+
         binding.txtMonth.setOnClickListener{
             val monthPickerDialog = MonthPickerDialog(this)
             monthPickerDialog.show(childFragmentManager, "")
@@ -73,12 +75,12 @@ class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
     }
 
     override fun calendarItemClicked(itemId: Long) {
-        binding.viewModel.setAchievementList(itemId)
+        binding.viewModel?.setAchievementList(itemId)
     }
 
     override fun selectedMonth(month: Int, year: Int) {
         lifecycleScope.launch {
-            binding.viewModel.setMonthDataOnView(LocalDate.of(year, month, 1))
+            binding.viewModel?.setMonthDataOnView(LocalDate.of(year, month, 1))
         }
     }
 }

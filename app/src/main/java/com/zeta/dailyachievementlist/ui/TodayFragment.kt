@@ -37,8 +37,8 @@ class TodayFragment : Fragment(), AchievementRecyclerViewParent {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val recyclerViewAdapter = AchievementRecyclerViewAdapter(binding.viewModel.achievementsList, this)
-        binding.viewModel.achievementsList.addOnListChangedCallback(
+        val recyclerViewAdapter = AchievementRecyclerViewAdapter(viewModel.achievementsList, this)
+        viewModel.achievementsList.addOnListChangedCallback(
             RecyclerViewListChangeNotifier(
                 recyclerViewAdapter as RecyclerView.Adapter<RecyclerView.ViewHolder>
             )
@@ -49,8 +49,8 @@ class TodayFragment : Fragment(), AchievementRecyclerViewParent {
     }
 
     override fun deleteAchievement(achievementId: Long) {
-        val achievement = binding.viewModel.achievementsList.find { it.id == achievementId }
-        binding.viewModel.achievementsList.remove(achievement)
+        val achievement = binding.viewModel!!.achievementsList.find { it.id == achievementId }
+        binding.viewModel!!.achievementsList.remove(achievement)
         if(achievement != null) {
             lifecycleScope.launch {
                 achievementDao.deleteAchievement(achievement.id)

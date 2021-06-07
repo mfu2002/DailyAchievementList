@@ -28,6 +28,8 @@ class StatisticsFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        binding.lifecycleOwner = this
+
 
 
 

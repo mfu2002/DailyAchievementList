@@ -10,29 +10,121 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
         <TextView
-            android:layout_margin="5dp"
+            android:layout_margin="16dp"
+            android:id="@+id/txtGoalAccomplishedCount"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Days Goal Accomplished Count"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="21sp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ctlGoalAchieved"
+            android:layout_margin="3dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txtGoalAccomplishedCount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctlGoalAchievedYear"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    android:id="@+id/txtGoalAchievedYear"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.daysFulfilledGoalYear.toString()}"
+                    android:textSize="19sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="13dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Year"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/txtGoalAchievedYear"
+                    app:layout_constraintStart_toStartOf="@id/txtGoalAchievedYear"
+                    app:layout_constraintTop_toBottomOf="@id/txtGoalAchievedYear" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_height="0dp"
+                android:layout_width="1dp"
+                android:background="@color/translucent_grey"
+                app:layout_constraintStart_toEndOf="@id/ctlGoalAchievedYear"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/ctlGoalAchievedYear"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctlGoalAchievedMonth"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ctlGoalAchievedYear">
+                <TextView
+                    android:id="@+id/txtGoalAchievedMonth"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.daysFulfilledGoalMonth.toString()}"
+                    android:textSize="19sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Month"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/txtGoalAchievedMonth"
+                    app:layout_constraintStart_toStartOf="@id/txtGoalAchievedMonth"
+                    app:layout_constraintTop_toBottomOf="@id/txtGoalAchievedMonth" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <TextView
+            android:layout_margin="16dp"
             android:id="@+id/txtAccomplishmentCount"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Accomplishment Count"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ctlGoalAchieved"
             android:textSize="21sp"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ctlAccomplishedCount"
+            android:layout_margin="3dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/txtAccomplishmentCount"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:id="@+id/ctlAchievementYear"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintWidth_percent="0.333"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
             <TextView
                 android:id="@+id/txtAccomplishmentCountYear"
                 app:layout_constraintTop_toTopOf="parent"
@@ -54,13 +146,22 @@
                 app:layout_constraintStart_toStartOf="@id/txtAccomplishmentCountYear"
                 app:layout_constraintTop_toBottomOf="@+id/txtAccomplishmentCountYear" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_height="0dp"
+                android:layout_width="1dp"
+                android:background="@color/translucent_grey"
+                app:layout_constraintStart_toEndOf="@id/ctlAchievementYear"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/ctlAchievementYear"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:id="@+id/ctlAchievementMonth"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintWidth_percent="0.333"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintStart_toEndOf="@id/ctlAchievementYear">
                 <TextView
                     android:id="@+id/txtAccomplishmentCountMonth"
                     app:layout_constraintTop_toTopOf="parent"
@@ -70,8 +171,7 @@
                     android:textSize="19sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_margin="13dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -83,12 +183,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtAccomplishmentCountMonth" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+            <View
+                android:layout_height="0dp"
+                android:layout_width="1dp"
+                android:background="@color/translucent_grey"
+                app:layout_constraintStart_toEndOf="@id/ctlAchievementMonth"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintBottom_toBottomOf="@id/ctlAchievementMonth"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintWidth_percent="0.333"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ctlAchievementMonth">
                 <TextView
                     android:id="@+id/txtAccomplishmentCountWeek"
                     app:layout_constraintTop_toTopOf="parent"
@@ -98,8 +207,7 @@
                     android:textSize="19sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_margin="13dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +218,7 @@
                     app:layout_constraintStart_toStartOf="@id/txtAccomplishmentCountWeek"
                     app:layout_constraintTop_toBottomOf="@+id/txtAccomplishmentCountWeek" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
