@@ -1,0 +1,39 @@
+<resources>
+    <string-array name="goal_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="theme_entries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System Default</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>system_default</item>
+    </string-array>
+
+    <string-array name="notification_style_entities">
+        <item>Off</item>
+        <item>Time Determined</item>
+        <item>Interval Determined</item>
+    </string-array>
+
+    <string-array name="notification_style_values">
+        <item>off</item>
+        <item>time_determined</item>
+        <item>interval_determined</item>
+    </string-array>
+
+</resources>

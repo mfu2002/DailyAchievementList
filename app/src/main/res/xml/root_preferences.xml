@@ -1,0 +1,66 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="General">
+        <ListPreference
+            app:key="@string/pref_goal"
+            app:title="Daily Goal"
+            app:entries="@array/goal_values"
+            app:entryValues="@array/goal_values"
+            android:defaultValue="5"
+            app:useSimpleSummaryProvider="true"/>
+        <Preference
+            app:key="reset_pref"
+            app:title="Reset Preferences"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Notification">
+        <ListPreference
+            app:key="notification_type"
+            app:title="Notification Type"
+            app:entries="@array/notification_style_entities"
+            app:entryValues="@array/notification_style_values"/>
+
+        <com.zeta.dailyachievementlist.ui.customPref.TimePreference
+            app:title="Notification Time"
+            app:key="notification_time" />
+
+        <EditTextPreference
+            android:digits="0123456789"
+            app:key="notificationStartTime"
+            app:title="Start Time" />
+
+        <EditTextPreference
+            android:digits="0123456789:"
+            app:key="notificationEndTime"
+            app:title="End Time" />
+
+        <EditTextPreference
+            android:digits="0123456789."
+            app:key="NotificationInterval"
+            app:title="Notification Interval(Hours)" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Appearance">
+        <ListPreference
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:key="Theme"
+            app:title="Theme"
+            android:defaultValue="system_default"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Support">
+        <Preference
+            app:title="Donate"
+            app:key="donate"/>
+        <Preference
+            app:title="Provide Feedback"
+            app:key="feedback"/>
+        <Preference
+            app:title="Share"
+            app:key="share"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
