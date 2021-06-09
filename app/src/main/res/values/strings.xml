@@ -19,4 +19,14 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="pref_notification_type">notification_type</string>
+    <string name="pref_notification_time">notification_time</string>
+    <string name="pref_notification_start_time">notificationStartTime</string>
+    <string name="pref_notification_end_time">notificationEndTime</string>
+    <string name="pref_notification_interval">NotificationInterval</string>
+    <string name="pref_theme">Theme</string>
+    <string name="pref_donate">donate</string>
+    <string name="pref_feedback">feedback</string>
+    <string name="pref_share">share</string>
+    <string name="pref_reset">reset_pref</string>
 </resources>

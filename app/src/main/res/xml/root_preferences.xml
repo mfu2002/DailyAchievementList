@@ -10,14 +10,14 @@
             android:defaultValue="5"
             app:useSimpleSummaryProvider="true"/>
         <Preference
-            app:key="reset_pref"
+            app:key="@string/pref_reset"
             app:title="Reset Preferences"/>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="Notification">
         <ListPreference
             app:defaultValue="off"
-            app:key="notification_type"
+            app:key="@string/pref_notification_type"
             app:title="Notification Type"
             app:entries="@array/notification_style_entities"
             app:entryValues="@array/notification_style_values"
@@ -25,32 +25,33 @@
 
         <com.zeta.dailyachievementlist.ui.customPref.TimePreference
             app:title="Notification Time"
-            app:key="notification_time" />
-
-        <com.zeta.dailyachievementlist.ui.customPref.TimePreference
-            app:key="notificationStartTime"
-            app:title="Start Time"
-            app:defaultValue="540"/>
-
-        <com.zeta.dailyachievementlist.ui.customPref.TimePreference
-            app:key="notificationEndTime"
-            app:title="End Time"
-            app:defaultValue="1260"/>
+            app:key="@string/pref_notification_time" />
 
         <ListPreference
             app:entryValues="@array/one_to_ten"
             app:entries="@array/one_to_ten"
-            app:key="NotificationInterval"
+            app:key="@string/pref_notification_interval"
             app:title="Notification Interval(Hours)"
             app:useSimpleSummaryProvider="true"
             app:defaultValue="3"/>
+
+        <com.zeta.dailyachievementlist.ui.customPref.TimePreference
+            app:key="@string/pref_notification_start_time"
+            app:title="Start Time"
+            app:defaultValue="540"/>
+
+        <com.zeta.dailyachievementlist.ui.customPref.TimePreference
+            app:key="@string/pref_notification_end_time"
+            app:title="End Time"
+            app:defaultValue="1260"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="Appearance">
         <ListPreference
             app:entries="@array/theme_entries"
             app:entryValues="@array/theme_values"
-            app:key="Theme"
+            app:key="@string/pref_theme"
             app:title="Theme"
             android:defaultValue="system_default"
             app:useSimpleSummaryProvider="true"/>
@@ -59,13 +60,13 @@
     <PreferenceCategory app:title="Support">
         <Preference
             app:title="Donate"
-            app:key="donate"/>
+            app:key="@string/pref_donate"/>
         <Preference
             app:title="Provide Feedback"
-            app:key="feedback"/>
+            app:key="@string/pref_feedback"/>
         <Preference
             app:title="Share"
-            app:key="share"/>
+            app:key="@string/pref_share"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

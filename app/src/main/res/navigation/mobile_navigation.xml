@@ -22,5 +22,11 @@
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.zeta.dailyachievementlist.ui.SettingsFragment"
-        android:label="Settings" />
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_navigation_settings_to_navigation_settings"
+            app:destination="@id/navigation_settings"
+            app:popUpTo="@id/navigation_settings"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
