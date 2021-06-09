@@ -47,7 +47,7 @@ class TimePreference(
     /**
      * Implement this to set the initial value of the Preference.
      */
-    override fun onSetInitialValue(restorePersistedValue: Boolean, defaultValue: Any) {
+    override fun onSetInitialValue(restorePersistedValue: Boolean, defaultValue: Any?) {
         // If the value can be restored, do it. If not, use the default value.
 
         time = if (restorePersistedValue) getPersistedInt(time) else defaultValue as Int
@@ -59,6 +59,6 @@ class TimePreference(
     }
 
     private fun formatTime() =
-        LocalTime.of(time / 60, time % 60).format(DateTimeFormatter.ofPattern("HH:mm"))
+        LocalTime.of(time / 60, time % 60).format(DateTimeFormatter.ofPattern("hh:mm a"))
 
 }

@@ -5,8 +5,8 @@
         <ListPreference
             app:key="@string/pref_goal"
             app:title="Daily Goal"
-            app:entries="@array/goal_values"
-            app:entryValues="@array/goal_values"
+            app:entries="@array/one_to_ten"
+            app:entryValues="@array/one_to_ten"
             android:defaultValue="5"
             app:useSimpleSummaryProvider="true"/>
         <Preference
@@ -16,29 +16,34 @@
 
     <PreferenceCategory app:title="Notification">
         <ListPreference
+            app:defaultValue="off"
             app:key="notification_type"
             app:title="Notification Type"
             app:entries="@array/notification_style_entities"
-            app:entryValues="@array/notification_style_values"/>
+            app:entryValues="@array/notification_style_values"
+            app:useSimpleSummaryProvider="true"/>
 
         <com.zeta.dailyachievementlist.ui.customPref.TimePreference
             app:title="Notification Time"
             app:key="notification_time" />
 
-        <EditTextPreference
-            android:digits="0123456789"
+        <com.zeta.dailyachievementlist.ui.customPref.TimePreference
             app:key="notificationStartTime"
-            app:title="Start Time" />
+            app:title="Start Time"
+            app:defaultValue="540"/>
 
-        <EditTextPreference
-            android:digits="0123456789:"
+        <com.zeta.dailyachievementlist.ui.customPref.TimePreference
             app:key="notificationEndTime"
-            app:title="End Time" />
+            app:title="End Time"
+            app:defaultValue="1260"/>
 
-        <EditTextPreference
-            android:digits="0123456789."
+        <ListPreference
+            app:entryValues="@array/one_to_ten"
+            app:entries="@array/one_to_ten"
             app:key="NotificationInterval"
-            app:title="Notification Interval(Hours)" />
+            app:title="Notification Interval(Hours)"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="3"/>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="Appearance">
