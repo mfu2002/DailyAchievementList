@@ -8,11 +8,13 @@ import com.zeta.dailyachievementlist.R
 import com.zeta.dailyachievementlist.ui.customPref.TimePreference
 import com.zeta.dailyachievementlist.ui.customPref.TimePreferenceDialogFragmentCompat
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
     }
+
+
 
     override fun onDisplayPreferenceDialog(preference: Preference?) {
 
@@ -30,4 +32,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
             super.onDisplayPreferenceDialog(preference)
         }
     }
+
+    override fun onPreferenceChange(preference: Preference?, newValue: Any?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+
 }

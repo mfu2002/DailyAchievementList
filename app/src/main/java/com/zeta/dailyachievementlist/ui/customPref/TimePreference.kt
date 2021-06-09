@@ -23,6 +23,11 @@ class TimePreference(
      * In Minutes after midnight
      */
     var time = 0
+    set(value) {
+        field  = value
+        persistInt(time)
+        notifyChanged()
+    }
 
 
     /**
@@ -45,7 +50,7 @@ class TimePreference(
     override fun onSetInitialValue(restorePersistedValue: Boolean, defaultValue: Any) {
         // If the value can be restored, do it. If not, use the default value.
 
-    time = if (restorePersistedValue) getPersistedInt(time) else defaultValue as Int
+        time = if (restorePersistedValue) getPersistedInt(time) else defaultValue as Int
     }
 
     override fun getSummary(): CharSequence {
@@ -53,7 +58,7 @@ class TimePreference(
         return prefix + formatTime()
     }
 
-    private fun formatTime(): String {
-        return  LocalTime.of(time/60, time %60).format(DateTimeFormatter.ofPattern("HH:mm"))
-    }
+    private fun formatTime() =
+        LocalTime.of(time / 60, time % 60).format(DateTimeFormatter.ofPattern("HH:mm"))
+
 }
