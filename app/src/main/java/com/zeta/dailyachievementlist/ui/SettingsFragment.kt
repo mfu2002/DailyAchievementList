@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.zeta.dailyachievementlist.Helper
 import com.zeta.dailyachievementlist.R
 import com.zeta.dailyachievementlist.ui.customPref.TimePreference
 import com.zeta.dailyachievementlist.ui.customPref.TimePreferenceDialogFragmentCompat
@@ -18,14 +19,21 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
 
         val notificationTypePref = findPreference<ListPreference>(getString(R.string.pref_notification_type))
         notificationTypePref?.onPreferenceChangeListener = this
-
         setNotificationTypeDependentDisability(notificationTypePref?.value)
+
+
+        findPreference<ListPreference>(getString(R.string.pref_theme))?.onPreferenceChangeListener = this
+
 
         findPreference<Preference>(getString(R.string.pref_reset))?.setOnPreferenceClickListener {
             preferenceManager.sharedPreferences.edit().clear().apply()
             findNavController().navigate(R.id.action_navigation_settings_to_navigation_settings)
             true
         }
+
+
+
+
     }
 
     private fun setNotificationTypeDependentDisability(typeValue: Any?){
@@ -64,6 +72,11 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
         if(preference == null || newValue == null ) return true
         if(preference.key.equals(getString(R.string.pref_notification_type))){
            setNotificationTypeDependentDisability(newValue)
+        }
+
+        if(preference.key.equals(getString(R.string.pref_theme))){
+            Helper.refreshTheme(requireContext())
+            requireActivity().recreate()
         }
         return true
     }
