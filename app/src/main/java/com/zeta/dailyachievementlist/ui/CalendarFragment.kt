@@ -1,16 +1,22 @@
 package com.zeta.dailyachievementlist.ui
 
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zeta.dailyachievementlist.MyApplication
 import com.zeta.dailyachievementlist.R
 import com.zeta.dailyachievementlist.RecyclerViewListChangeNotifier
 import com.zeta.dailyachievementlist.databinding.FragmentCalendarBinding
@@ -29,6 +35,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
 
+    private val TAG = "CalendarFragment"
+
     lateinit var binding: FragmentCalendarBinding
     @Inject
     lateinit var achievementDao: AchievementDao
@@ -41,6 +49,13 @@ class CalendarFragment : Fragment(), CalendarParent, MonthPickerCallBack {
         binding.lifecycleOwner = this
         val viewModel by viewModels<CalendarFragmentViewModel>()
         binding.viewModel =viewModel
+
+
+        val outValue = TypedValue()
+        requireActivity().theme.resolveAttribute(R.attr.colorSecondary,outValue, true)
+        viewModel.primaryColor = outValue.data
+        requireActivity().theme.resolveAttribute(R.attr.colorSecondaryVariant,outValue, true)
+        viewModel.secondaryColor = outValue.data
 
         val calendarAdapter = CalendarAdapter(viewModel.currentViewCalendarData, this)
         viewModel.currentViewCalendarData.addOnListChangedCallback(

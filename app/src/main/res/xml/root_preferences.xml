@@ -7,7 +7,7 @@
             app:title="Daily Goal"
             app:entries="@array/one_to_ten"
             app:entryValues="@array/one_to_ten"
-            android:defaultValue="5"
+            app:defaultValue="@string/def_goal"
             app:useSimpleSummaryProvider="true"/>
         <Preference
             app:key="@string/pref_reset"
@@ -55,18 +55,6 @@
             app:title="Theme"
             android:defaultValue="system_default"
             app:useSimpleSummaryProvider="true"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="Support">
-        <Preference
-            app:title="Donate"
-            app:key="@string/pref_donate"/>
-        <Preference
-            app:title="Provide Feedback"
-            app:key="@string/pref_feedback"/>
-        <Preference
-            app:title="Share"
-            app:key="@string/pref_share"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

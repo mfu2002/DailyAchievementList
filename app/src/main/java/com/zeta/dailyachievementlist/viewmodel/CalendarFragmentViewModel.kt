@@ -5,12 +5,17 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.util.Log
+import android.util.TypedValue
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.preference.Preference
+import androidx.preference.PreferenceManager
 import com.zeta.dailyachievementlist.MyApplication
 import com.zeta.dailyachievementlist.R
 import com.zeta.dailyachievementlist.room.AchievementDao
@@ -28,10 +33,12 @@ import kotlin.collections.ArrayList
 @HiltViewModel
 class CalendarFragmentViewModel @Inject constructor(
     app: Application,
-    val sharedPref: SharedPreferences,
     val achievementDao: AchievementDao
     ): AndroidViewModel(app) {
 
+    private val TAG = "CalendarFragmentViewMod"
+    
+    
     val currentViewCalendarData = ObservableArrayList<CalendarItemData>()
     private val achievementCache = Hashtable<Long, List<Achievement>>()
     val currentViewAchievementList = ObservableArrayList<Achievement>()
@@ -39,7 +46,14 @@ class CalendarFragmentViewModel @Inject constructor(
     val viewingMonthStr = MutableLiveData("")
     private var viewingMonth =  LocalDate.now()
 
-    private val dailyGoal by lazy { sharedPref.getInt(getApplication<MyApplication>().getString(R.string.pref_goal), 5) }
+    private val dailyGoal by lazy {
+        PreferenceManager.getDefaultSharedPreferences(getApplication<MyApplication>().applicationContext)
+            .getString(getApplication<MyApplication>().getString(R.string.pref_goal), getApplication<MyApplication>().getString(R.string.def_goal))!!.toInt()
+    }
+
+    var primaryColor: Int =0
+    var secondaryColor: Int =0
+
 
 
     init {
@@ -49,8 +63,8 @@ class CalendarFragmentViewModel @Inject constructor(
 
     }
 
+
    private suspend fun getMonthAchievements(date: LocalDate) {
-        //TODO: check Whether Leap Year
         val monthAchievements = achievementDao.getAchievementsBetweenDates(
                 LocalDateConverter.fromLocalDate(
                         date.withDayOfMonth(1))!!,
@@ -104,10 +118,12 @@ class CalendarFragmentViewModel @Inject constructor(
             val backgroundColor =
                 when {
                     dayAchievements.size >= dailyGoal -> {
-                        Color.parseColor("#8800FF00")
+                        primaryColor
+                        //Color.parseColor("#8800FF00")
                     }
                     dayAchievements.size >= dailyGoal / 2 -> {
-                        Color.parseColor("#5500FF00")
+                        secondaryColor
+                        //Color.parseColor("#5500FF00")
                     }
                     else -> {
                         Color.TRANSPARENT

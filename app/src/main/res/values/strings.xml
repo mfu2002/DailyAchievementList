@@ -29,4 +29,7 @@
     <string name="pref_feedback">feedback</string>
     <string name="pref_share">share</string>
     <string name="pref_reset">reset_pref</string>
+
+
+    <string name="def_goal">5</string>
 </resources>

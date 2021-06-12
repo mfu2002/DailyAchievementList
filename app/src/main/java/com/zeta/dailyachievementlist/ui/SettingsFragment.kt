@@ -27,12 +27,9 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChan
 
         findPreference<Preference>(getString(R.string.pref_reset))?.setOnPreferenceClickListener {
             preferenceManager.sharedPreferences.edit().clear().apply()
-            findNavController().navigate(R.id.action_navigation_settings_to_navigation_settings)
+            requireActivity().recreate()
             true
         }
-
-
-
 
     }
 

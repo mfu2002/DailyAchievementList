@@ -33,6 +33,7 @@
             android:padding="8dp"
             android:background="@android:color/transparent"
             android:hint="New Achievement"
+            android:maxLines="1"
             android:text="@={viewModel.newAchievement}"/>
         <ImageButton
             android:id="@+id/img_btn_add_achievement"
@@ -44,7 +45,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{viewModel::addAchievement}"/>
+            android:onClick="@{viewModel::addAchievement}"
+            app:tint="?attr/colorSecondary" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_achievements"
@@ -59,6 +61,4 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

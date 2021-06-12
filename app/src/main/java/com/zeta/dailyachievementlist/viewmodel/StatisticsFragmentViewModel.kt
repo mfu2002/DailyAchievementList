@@ -3,6 +3,7 @@ package com.zeta.dailyachievementlist.viewmodel
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.lifecycle.*
+import androidx.preference.PreferenceManager
 import com.zeta.dailyachievementlist.MyApplication
 import com.zeta.dailyachievementlist.R
 import com.zeta.dailyachievementlist.room.AchievementDao
@@ -16,15 +17,15 @@ import javax.inject.Inject
 @HiltViewModel
 class StatisticsFragmentViewModel @Inject constructor(
     val achievementDao: AchievementDao,
-    private val sharedPref: SharedPreferences,
     app: Application
 ): AndroidViewModel(app) {
 
     private val dailyGoal by lazy {
-        sharedPref.getInt(
-            getApplication<MyApplication>().getString(R.string.pref_goal),
-            5
-        )
+        PreferenceManager.getDefaultSharedPreferences(getApplication<MyApplication>().applicationContext)
+            .getString(
+                getApplication<MyApplication>().getString(R.string.pref_goal),
+                getApplication<MyApplication>().getString(R.string.def_goal)
+            )!!.toInt()
     }
 
     val achievementYearCount = MutableLiveData(0)

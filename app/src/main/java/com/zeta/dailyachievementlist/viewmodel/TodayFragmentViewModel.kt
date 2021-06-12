@@ -34,6 +34,7 @@ class TodayFragmentViewModel @Inject constructor(val achievementDao: Achievement
     }
 
     fun addAchievement(v: View){
+        if(newAchievement.value == "")return
         viewModelScope.launch {
            val id = achievementDao.addAchievement(Achievement(0, newAchievement.value.toString(), LocalDate.now()))
             achievementsList.add(0, Achievement(id, newAchievement.value.toString(),LocalDate.now()))

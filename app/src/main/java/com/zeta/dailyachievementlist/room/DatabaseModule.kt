@@ -28,12 +28,12 @@ object DatabaseModule {
         ).build()
     }
 
-    @Provides
-    fun provideSharedPreferences(@ApplicationContext appContext: Context): SharedPreferences {
-        return appContext.getSharedPreferences(
-            appContext.getString(R.string.pref_file),
-            Context.MODE_PRIVATE
-        )
-    }
+//    @Provides
+//    fun provideSharedPreferences(@ApplicationContext appContext: Context): SharedPreferences {
+//        return appContext.getSharedPreferences(
+//            appContext.getString(R.string.pref_file),
+//            Context.MODE_PRIVATE
+//        )
+//    }
 
 }

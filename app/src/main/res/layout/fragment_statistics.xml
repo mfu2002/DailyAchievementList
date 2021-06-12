@@ -51,6 +51,7 @@
                     android:layout_margin="13dp"/>
 
                 <TextView
+                    android:textColor="?attr/colorSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Year"
@@ -91,6 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="Month"
                     android:textSize="13sp"
+                    android:textColor="?attr/colorSecondary"
                     app:layout_constraintEnd_toEndOf="@id/txtGoalAchievedMonth"
                     app:layout_constraintStart_toStartOf="@id/txtGoalAchievedMonth"
                     app:layout_constraintTop_toBottomOf="@id/txtGoalAchievedMonth" />
@@ -138,6 +140,7 @@
                 android:layout_margin="13dp"/>
 
             <TextView
+                android:textColor="?attr/colorSecondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Year"
@@ -174,6 +177,8 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
+                    android:textColor="?attr/colorSecondary"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Month"
@@ -210,6 +215,7 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
+                    android:textColor="?attr/colorSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Week"
