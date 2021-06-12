@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.RecyclerView
 import com.zeta.dailyachievementlist.databinding.FragmentTodayBinding
 import com.zeta.dailyachievementlist.viewmodel.TodayFragmentViewModel
@@ -45,6 +46,15 @@ class TodayFragment : Fragment(), AchievementRecyclerViewParent {
         )
         binding.rcvAchievements.adapter = recyclerViewAdapter
         binding.rcvAchievements.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.txtAddAchievement.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_GO){
+                binding.imgBtnAddAchievement.callOnClick()
+
+            }
+            false
+        }
+
         return binding.root
     }
 

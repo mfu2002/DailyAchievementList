@@ -25,6 +25,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <EditText
+            android:id="@+id/txt_add_achievement"
+            android:inputType="text"
+            android:imeOptions="actionGo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/img_btn_add_achievement"
