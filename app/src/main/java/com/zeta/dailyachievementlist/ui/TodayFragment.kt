@@ -47,7 +47,7 @@ class TodayFragment : Fragment(), AchievementRecyclerViewParent {
         binding.rcvAchievements.adapter = recyclerViewAdapter
         binding.rcvAchievements.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.txtAddAchievement.setOnEditorActionListener { v, actionId, event ->
+        binding.txtAddAchievement.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_GO){
                 binding.imgBtnAddAchievement.callOnClick()
 
